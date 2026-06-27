@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<!--This project is part of https://github.com/powerNotsans/ActCallSmart-->
+<!--Struggling with HTML? Watch Bros Code: https://www.youtube.com/watch?v=HD13eq_Pmp8-->
+<!--File->Preferences->Settings->Extensions->LiveConfig->Setting:Custom Broswer-->
+
+<html lang="en">
+    <head>
+        <title>RNG</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Generate a number">
+        <meta name="keywords" content="Random number generator, RNG, random, number, generator, random number">
+        <meta name="author" content="powerNotsans">
+        <meta name="Viewport" content="width=device=width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <meta name="referrer" content="strict-origin-when-cross-origin">
+    </head>
+
+    <body class="p">
+
+        <header id="idheader">
+            <p id="idtimer"></p>
+        </header>
+
+        <main>
+            <div id="idblankdiv"></div>
+            <form>
+                <div id="idformdiv" class="classmainfont">
+                    <form id="idform">
+                        <label for="idmax">Maximum Value</label>
+                        <input id="idmax" type="number" min="-67108863" max="67108863" value="0" required>
+                        <br>
+                        <label for="idmin">Minimum Value</label>
+                        <input id="idmin" type="number" min="-67108863" max="67108863" value="0" required>
+                        <br>
+                        <input type="reset" id="idresetbtn">
+                        <br>
+                        <button id="idbtn">Enter</button>
+                    </from>
+                </div>
+            </form>
+
+            <div id="idnumberdisplaycontainer">
+                <p id="idnumberdisplay">0</p>
+            </div>
+
+            <br> 
+
+            <div id="iddiv2" class="classmainfont">
+                <button id="idcontinue" class="idcs">Continue</button>
+                <br>
+                <p id="idnumlist">123</p>
+                <br>
+                <label for="idreminput">Remove a number:</label>
+                <input id="idreminput" type="number" min="-67108863" max="67108863" required>
+                <br>
+                <button id="idrembtn" class="idcs">Remove</button>
+            </div>
+        </main>
+
+        <footer id="idfooter">
+            <a href="https://www.youtube.com/@powerNotsans" target="_blank"><img width="50" height="50" src="Youtube.svg"></img></a>
+            <p id="idcopyrighttext" class="normaltext">Copyright &copy; 2026 powerNotsans</p>
+        </footer>
+
+        <script src="index.js"></script>
+    </body>
+</html>
