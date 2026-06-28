@@ -23,15 +23,20 @@
         </header>
 
         <main>
-            <div id="idbackground"> <img></img> </div>
+
+
+            <section id="idbackground"></section>
             <form>
                 <div id="idformdiv" class="classmainfont">
                     <form id="idform">
-                        <label for="idmax">Maximum Value</label>
+                        <label for="idmax">Maximum Value:</label>
                         <input id="idmax" type="number" min="-67108863" max="67108863" value="0" required>
                         <br>
-                        <label for="idmin">Minimum Value</label>
+                        <label for="idmin">Minimum Value:</label>
                         <input id="idmin" type="number" min="-67108863" max="67108863" value="0" required>
+                        <br>
+                        <label for="idtickbox1">Replicated:</label>
+                        <input id="idtickbox1" type="checkbox" required>
                         <br>
                         <input type="reset" id="idresetbtn" class="buttons">
                         <br>
@@ -40,17 +45,16 @@
                 </div>
             </form>
 
-            <div id="idnumberdisplaycontainer">
+            <section id="idnumberdisplaycontainer">
                 <p id="idnumberdisplay">0</p>
-            </div>
+            </section>
 
             <br> 
 
             <div id="iddiv2" class="classmainfont">
                 <button id="idcontinue" class="idcs buttons">Continue</button>
                 <br>
-                <label for="idreminput">Remove a number:</label>
-                <!--<input id="idreminput" type="number" min="-67108863" max="67108863" required>-->
+                <label for="idremselect">Remove a number:</label>
                 <select id="idremselect" size="3">
                 </select>
                 <br>
@@ -60,7 +64,7 @@
 
             <br>
 
-            <button id="idclear" class="bottombuttons buttons">Clear</button>
+            <!--<button id="idclear" class="bottombuttons buttons">Clear</button>-->
         </main>
 
         <footer id="idfooter">

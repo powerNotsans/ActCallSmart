@@ -8,6 +8,7 @@ const resetbtn = document.getElementById("idresetbtn")
 const timer = document.getElementById("idtimer")
 const remselect = document.getElementById("idremselect")
 const rembtn = document.getElementById("idrembtn")
+const replicated = document.getElementById("idtickbox1")
 
 const date = new Date()
 if (date.getHours() < 20) {
@@ -20,9 +21,12 @@ if (date.getHours() < 20) {
 
 const arrayindexmax = (2 ** 26)-1
 
-let numberlist = []
+let numcomplist = []
 
 let debounce = false
+
+let maximum
+let minimum
 
 wait = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -39,24 +43,46 @@ async function timerloop() {
 
 timerloop()
 
-function RNG() {
-    let random = Math.floor(Math.random() * numberlist.length)
-    numdisplay.innerHTML = numberlist[random]
-    numberlist.splice(random, 1)
-    remselect.remove(random)
-    remselect.value = ""
+function RNGMachine(max){
+    const random = Math.floor(Math.random() * (max + 1))
+    return random
+}
+
+function RNG(max, min) {
+    let numselect = RNGMachine(max)
+
+    while (numcomplist.indexOf(numselect) != -1){
+        numselect = RNGMachine(max)
+    }
+
+    numdisplay.innerHTML = numselect
+
+    if (!replicated.checked){
+        numcomplist.push(numselect)
+    }
     return
+}
+
+async function AddNumberToList(number){
+    numberlist.push(number)
+
+    const option = document.createElement("option")
+    option.text = number
+    option.value = number
+    //remselect.add(option)
+    wait(500)
 }
 
 btn.addEventListener("click", (pe) => {
     pe.preventDefault()
-    if (debounce != false){
+    if (debounce == true) {
         return
     }
+
     debounce = true
 
-    let maximum = Number(max.value)
-    let minimum = Number(min.value)
+    maximum = Number(max.value)
+    minimum = Number(min.value)
 
     maximum > arrayindexmax ? maximum = arrayindexmax : maximum = maximum
     maximum < arrayindexmax * -1 ? maximum = arrayindexmax * -1 : maximum = maximum
@@ -77,19 +103,9 @@ btn.addEventListener("click", (pe) => {
         min.value = minimum
     }
 
-    numberlist.length = 0
+    numcomplist.length = 0
 
-    for (let i = minimum; i <= maximum; i ++) {
-        numberlist.push(i)
-
-        const option = document.createElement("option")
-        option.text = i
-        option.value = i
-        remselect.add(option)
-        wait(500)
-    }
-
-    RNG()
+    RNG(maximum, minimum)
 })
 
 conbtn.addEventListener("click", (pe) => {
@@ -99,11 +115,11 @@ conbtn.addEventListener("click", (pe) => {
         return
     }
 
-    if (numberlist.length == 0) {
-        numberlist.length = 0
+    if (numcomplist.length == (maximum+1)) {
+        numcomplist.length = 0
         debounce = false
     } else {
-        RNG()
+        RNG(maximum, minimum)
     }
 })
 
