@@ -6,12 +6,11 @@ const min = document.getElementById("idmin")
 const numdisplay = document.getElementById("idnumberdisplay")
 const resetbtn = document.getElementById("idresetbtn")
 const timer = document.getElementById("idtimer")
-const numlistdisplay = document.getElementById("idnumlist")
-const reminput = document.getElementById("idreminput")
+const remselect = document.getElementById("idremselect")
 const rembtn = document.getElementById("idrembtn")
 
 const date = new Date()
-if (date.getHours() > 20) {
+if (date.getHours() < 20) {
     document.body.classList.add("lightmode")
     document.body.classList.remove("darkmode")
 }else{
@@ -44,7 +43,8 @@ function RNG() {
     let random = Math.floor(Math.random() * numberlist.length)
     numdisplay.innerHTML = numberlist[random]
     numberlist.splice(random, 1)
-    numlistdisplay.innerHTML = numberlist
+    remselect.remove(random)
+    remselect.value = ""
     return
 }
 
@@ -81,11 +81,15 @@ btn.addEventListener("click", (pe) => {
 
     for (let i = minimum; i <= maximum; i ++) {
         numberlist.push(i)
+
+        const option = document.createElement("option")
+        option.text = i
+        option.value = i
+        remselect.add(option)
+        wait(500)
     }
 
     RNG()
-
-    numlistdisplay.innerHTML = numberlist
 })
 
 conbtn.addEventListener("click", (pe) => {
@@ -105,8 +109,15 @@ conbtn.addEventListener("click", (pe) => {
 
 rembtn.addEventListener("click", (pe) => {
     pe.preventDefault()
-    numberlist.splice(numberlist.indexOf(Number(reminput.value)), 1)
-    numlistdisplay.innerHTML = numberlist
+
+    if (remselect.value == ""){
+        return
+    }
+
+    const remnumindex = numberlist.indexOf(Number(remselect.value))
+    numberlist.splice(remnumindex, 1)
+    remselect.remove(remnumindex)
+    remselect.value = ""
 })
 
 resetbtn.addEventListener("click", (pe) => {

@@ -23,7 +23,7 @@
         </header>
 
         <main>
-            <div id="idblankdiv"></div>
+            <div id="idbackground"> <img></img> </div>
             <form>
                 <div id="idformdiv" class="classmainfont">
                     <form id="idform">
@@ -33,9 +33,9 @@
                         <label for="idmin">Minimum Value</label>
                         <input id="idmin" type="number" min="-67108863" max="67108863" value="0" required>
                         <br>
-                        <input type="reset" id="idresetbtn">
+                        <input type="reset" id="idresetbtn" class="buttons">
                         <br>
-                        <button id="idbtn">Enter</button>
+                        <button id="idbtn" class="buttons">Enter</button>
                     </from>
                 </div>
             </form>
@@ -47,20 +47,25 @@
             <br> 
 
             <div id="iddiv2" class="classmainfont">
-                <button id="idcontinue" class="idcs">Continue</button>
-                <br>
-                <p id="idnumlist">123</p>
+                <button id="idcontinue" class="idcs buttons">Continue</button>
                 <br>
                 <label for="idreminput">Remove a number:</label>
-                <input id="idreminput" type="number" min="-67108863" max="67108863" required>
+                <!--<input id="idreminput" type="number" min="-67108863" max="67108863" required>-->
+                <select id="idremselect" size="3">
+                </select>
                 <br>
-                <button id="idrembtn" class="idcs">Remove</button>
             </div>
+
+            <button id="idrembtn" class="bottombuttons buttons">Remove</button>
+
+            <br>
+
+            <button id="idclear" class="bottombuttons buttons">Clear</button>
         </main>
 
         <footer id="idfooter">
             <a href="https://www.youtube.com/@powerNotsans" target="_blank"><img width="50" height="50" src="Youtube.svg"></img></a>
-            <p id="idcopyrighttext" class="normaltext">Copyright &copy; 2026 powerNotsans</p>
+            <p id="idcopyrighttext" class="normaltext normaltext">Copyright &copy; 2026 powerNotsans</p>
         </footer>
 
         <script src="index.js"></script>
