@@ -19,11 +19,11 @@ if (date.getHours() < 20) {
     document.body.classList.remove("lightmode")
 }
 
-const arrayindexmax = (2 ** 26)-1
+const arrayindexmax = ((2 ** 32)-1)/2
 
 let numcomplist = []
 
-let debounce = false
+let running = false
 
 let maximum
 let minimum
@@ -43,21 +43,21 @@ async function timerloop() {
 
 timerloop()
 
-function RNGMachine(max){
-    const random = Math.floor(Math.random() * (max + 1))
+function RNGMachine(max, min){
+    const random = Math.floor(Math.random() * (max - min + 1)) + min
     return random
 }
 
 function RNG(max, min) {
-    let numselect = RNGMachine(max)
+    let numselect = RNGMachine(max, min)
 
-    while (numcomplist.indexOf(numselect) != -1){
-        numselect = RNGMachine(max)
+    while (numcomplist.indexOf(numselect) != -1 || numselect > max || numselect < min){
+        numselect = RNGMachine(max, min)
     }
-
+0
     numdisplay.innerHTML = numselect
 
-    if (!replicated.checked){
+    if (replicated.checked == false){
         numcomplist.push(numselect)
     }
     return
@@ -75,11 +75,7 @@ async function AddNumberToList(number){
 
 btn.addEventListener("click", (pe) => {
     pe.preventDefault()
-    if (debounce == true) {
-        return
-    }
-
-    debounce = true
+    running = true
 
     maximum = Number(max.value)
     minimum = Number(min.value)
@@ -111,31 +107,17 @@ btn.addEventListener("click", (pe) => {
 conbtn.addEventListener("click", (pe) => {
     pe.preventDefault()
 
-    if (debounce != true){
+    if (running == false){
         return
     }
-
-    if (numcomplist.length == (maximum+1)) {
+``
+    if (numcomplist.length == (maximum+1) && replicated.checked == false) {
         numcomplist.length = 0
-        debounce = false
+        running = false
     } else {
         RNG(maximum, minimum)
     }
 })
 
-rembtn.addEventListener("click", (pe) => {
-    pe.preventDefault()
-
-    if (remselect.value == ""){
-        return
-    }
-
-    const remnumindex = numberlist.indexOf(Number(remselect.value))
-    numberlist.splice(remnumindex, 1)
-    remselect.remove(remnumindex)
-    remselect.value = ""
-})
-
 resetbtn.addEventListener("click", (pe) => {
-    debounce = false
 })
